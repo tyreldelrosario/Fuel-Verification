@@ -10,6 +10,7 @@ body {
     height: 100vh;
     box-sizing: border-box;
     overflow: hidden; /* Prevent page scrolling */
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
 }
 
 h1 {
