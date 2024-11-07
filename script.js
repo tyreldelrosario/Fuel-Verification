@@ -1,29 +1,103 @@
-function calculateFuel() {
-    // Get input values
-    const fuelChange = parseFloat(document.getElementById("fuelChange").value);
-    const fuelUnit = document.getElementById("fuelUnit").value;
-    const originalFuel = parseFloat(document.getElementById("originalFuel").value);
-    const currentFuel = parseFloat(document.getElementById("currentFuel").value);
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent page scrolling */
+}
 
-    // Convert fuel change to pounds
-    let fuelChangeInPounds;
-    if (fuelUnit === "litres") {
-        fuelChangeInPounds = fuelChange * 1.76;
-    } else if (fuelUnit === "gallons") {
-        fuelChangeInPounds = fuelChange * 6.67;
+h1 {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px; /* Max width for larger screens */
+    gap: 15px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+input, select, button {
+    font-size: 1em;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform 0.2s ease; /* Prevent zooming when focused */
+}
+
+input:focus, select:focus, button:focus {
+    outline: none;
+    transform: scale(1); /* Prevent zooming on input focus */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result p {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* iPhone and small screen optimizations */
+@media (max-width: 600px) {
+    body {
+        padding: 20px;
+        background-color: #e9ecef;
     }
 
-    // Calculate mismatch limit
-    const mismatchLimit = 2400 + (fuelChangeInPounds * 0.01);
+    h1 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
 
-    // Calculate fuel mismatch
-    const fuelMismatch = Math.abs((originalFuel + fuelChangeInPounds) - currentFuel);
+    form {
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: none;
+    }
 
-    // Display result
-    const resultDiv = document.getElementById("result");
-    if (fuelMismatch <= mismatchLimit) {
-        resultDiv.innerHTML = `<p>Good: Fuel mismatch (${fuelMismatch.toFixed(2)} lbs) is within limit (${mismatchLimit.toFixed(2)} lbs).</p>`;
-    } else {
-        resultDiv.innerHTML = `<p>Bad: Fuel mismatch (${fuelMismatch.toFixed(2)} lbs) exceeds limit (${mismatchLimit.toFixed(2)} lbs).</p>`;
+    label {
+        font-size: 0.95em;
+    }
+
+    input, select, button {
+        font-size: 1.1em;
+        padding: 10px;
+    }
+
+    #result p {
+        font-size: 1em;
     }
 }
