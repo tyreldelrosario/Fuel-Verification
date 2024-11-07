@@ -10,6 +10,7 @@ body {
     height: 100vh;
     box-sizing: border-box;
     overflow: hidden; /* Prevent page scrolling */
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
 }
 
 h1 {
@@ -68,6 +69,23 @@ button:hover {
     text-align: center;
     margin-top: 20px;
     color: #333;
+}
+
+/* New layout for fuel change and unit selection */
+.fuel-change-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.fuel-change-container label {
+    margin-bottom: 0; /* Remove bottom margin for label */
+}
+
+.fuel-change-container input,
+.fuel-change-container select {
+    width: auto; /* Allow input and select to adjust width based on content */
 }
 
 /* iPhone and small screen optimizations */
