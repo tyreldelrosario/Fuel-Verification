@@ -7,20 +7,20 @@
     <style>
         body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; }
         .calculator { text-align: center; }
-        input { font-size: 1.5em; }
+        input { font-size: 1.5em; margin: 5px; }
     </style>
 </head>
 <body>
     <div class="calculator">
         <h1>Simple Calculator</h1>
-        <input type="text" id="num1" placeholder="First Number">
+        <input type="number" id="num1" placeholder="First Number">
         <select id="operator">
             <option value="+">+</option>
             <option value="-">-</option>
             <option value="*">*</option>
             <option value="/">/</option>
         </select>
-        <input type="text" id="num2" placeholder="Second Number">
+        <input type="number" id="num2" placeholder="Second Number">
         <button onclick="calculate()">Calculate</button>
         <p id="result"></p>
     </div>
