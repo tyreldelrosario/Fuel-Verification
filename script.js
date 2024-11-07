@@ -28,7 +28,7 @@ function calculateFuel() {
     }
 }
 
-// Function to handle "Enter" key press and move to the next input
+// Function to handle "Enter" key press
 document.getElementById('fuelForm').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault(); // Prevent form submission
