@@ -37,11 +37,16 @@ document.getElementById('fuelForm').addEventListener('keydown', function(event) 
         // Find the currently focused input element
         const activeElement = document.activeElement;
 
-        // Move to the next element in the form
+        // Move to the next element, skipping the unit selection field
         const formElements = Array.from(document.querySelectorAll('input, select, button'));
         const currentIndex = formElements.indexOf(activeElement);
-        if (currentIndex !== -1 && currentIndex < formElements.length - 1) {
-            formElements[currentIndex + 1].focus(); // Focus next element
+
+        if (currentIndex !== -1) {
+            if (currentIndex === 0) {
+                formElements[currentIndex + 2].focus(); // Skip the unit selection and focus on the next input (Original Fuel Total)
+            } else if (currentIndex < formElements.length - 1) {
+                formElements[currentIndex + 1].focus(); // Focus next element
+            }
         }
     }
 });
