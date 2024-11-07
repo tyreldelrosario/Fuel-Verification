@@ -10,14 +10,14 @@
     <h1>Fuel Verification App</h1>
     
     <form id="fuelForm">
-        <label for="fuelChange">Uploaded Fuel Change:</label>
-        <input type="number" id="fuelChange" required>
-        
-        <label for="fuelUnit">Select Unit:</label>
-        <select id="fuelUnit">
-            <option value="litres">Litres</option>
-            <option value="gallons">Gallons</option>
-        </select>
+        <div class="fuel-change-container">
+            <label for="fuelChange">Uploaded Fuel Change:</label>
+            <input type="number" id="fuelChange" required>
+            <select id="fuelUnit">
+                <option value="litres">Litres</option>
+                <option value="gallons">Gallons</option>
+            </select>
+        </div>
 
         <label for="originalFuel">Original Fuel Total (lbs):</label>
         <input type="number" id="originalFuel" required>
