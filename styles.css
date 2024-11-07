@@ -33,30 +33,22 @@ form {
 
 label {
     font-size: 1.1em;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-weight: bold;
     text-align: left;
 }
 
-/* Adjust uploaded fuel change label and input fields */
-.fuel-change-container {
-    display: flex;
-    flex-direction: column; /* Stack the label and input vertically */
-    gap: 10px;
-    width: 100%;
-}
-
-.fuel-change-container input,
-.fuel-change-container select {
+input, select, button {
     font-size: 1em;
     padding: 12px;
     border-radius: 5px;
     border: 1px solid #ddd;
     width: 100%;
     box-sizing: border-box;
+    transition: transform 0.2s ease; /* Prevent zooming when focused */
 }
 
-input:focus, select:focus {
+input:focus, select:focus, button:focus {
     outline: none;
     transform: scale(1); /* Prevent zooming on input focus */
 }
@@ -81,6 +73,19 @@ button:hover {
     color: #333;
 }
 
+/* New layout for fuel change and unit selection */
+.fuel-change-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.fuel-change-container input,
+.fuel-change-container select {
+    width: auto; /* Allow input and select to adjust width based on content */
+}
+
 /* iPhone and small screen optimizations */
 @media (max-width: 600px) {
     body {
@@ -96,3 +101,19 @@ button:hover {
     form {
         padding: 15px;
         border-radius: 8px;
+        box-shadow: none;
+    }
+
+    label {
+        font-size: 1em;
+    }
+
+    input, select, button {
+        font-size: 1.1em;
+        padding: 10px;
+    }
+
+    #result p {
+        font-size: 1em;
+    }
+}
