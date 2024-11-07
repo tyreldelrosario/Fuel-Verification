@@ -1,29 +1,29 @@
-function calculate() {
-    const num1 = parseFloat(document.getElementById("num1").value);
-    const num2 = parseFloat(document.getElementById("num2").value);
-    const operator = document.getElementById("operator").value;
-    let result;
+function calculateFuel() {
+    // Get input values
+    const fuelChange = parseFloat(document.getElementById("fuelChange").value);
+    const fuelUnit = document.getElementById("fuelUnit").value;
+    const originalFuel = parseFloat(document.getElementById("originalFuel").value);
+    const currentFuel = parseFloat(document.getElementById("currentFuel").value);
 
-    if (isNaN(num1) || isNaN(num2)) {
-        result = "Please enter valid numbers.";
-    } else {
-        switch (operator) {
-            case "+":
-                result = num1 + num2;
-                break;
-            case "-":
-                result = num1 - num2;
-                break;
-            case "*":
-                result = num1 * num2;
-                break;
-            case "/":
-                result = num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
-                break;
-            default:
-                result = "Invalid operator";
-        }
+    // Convert fuel change to pounds
+    let fuelChangeInPounds;
+    if (fuelUnit === "litres") {
+        fuelChangeInPounds = fuelChange * 1.76;
+    } else if (fuelUnit === "gallons") {
+        fuelChangeInPounds = fuelChange * 6.67;
     }
 
-    document.getElementById("result").textContent = "Result: " + result;
+    // Calculate mismatch limit
+    const mismatchLimit = 2400 + (fuelChangeInPounds * 0.01);
+
+    // Calculate fuel mismatch
+    const fuelMismatch = Math.abs((originalFuel + fuelChangeInPounds) - currentFuel);
+
+    // Display result
+    const resultDiv = document.getElementById("result");
+    if (fuelMismatch <= mismatchLimit) {
+        resultDiv.innerHTML = `<p>Good: Fuel mismatch (${fuelMismatch.toFixed(2)} lbs) is within limit (${mismatchLimit.toFixed(2)} lbs).</p>`;
+    } else {
+        resultDiv.innerHTML = `<p>Bad: Fuel mismatch (${fuelMismatch.toFixed(2)} lbs) exceeds limit (${mismatchLimit.toFixed(2)} lbs).</p>`;
+    }
 }
