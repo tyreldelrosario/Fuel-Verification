@@ -33,7 +33,7 @@ form {
 
 label {
     font-size: 1em;
-    margin-bottom: 5px;
+    margin-bottom: 0; /* No gap below labels */
 }
 
 input, select, button {
@@ -43,6 +43,7 @@ input, select, button {
     border: 1px solid #ddd;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 10px; /* Add a gap below each input and select */
     transition: transform 0.2s ease; /* Prevent zooming when focused */
 }
 
