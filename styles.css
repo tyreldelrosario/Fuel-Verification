@@ -24,7 +24,6 @@ form {
     flex-direction: column;
     width: 100%;
     max-width: 400px; /* Max width for larger screens */
-    gap: 15px;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -33,7 +32,7 @@ form {
 
 label {
     font-size: 1em;
-    margin-bottom: 0; /* No gap below labels */
+    margin-bottom: 5px; /* No gap below labels */
 }
 
 input, select, button {
@@ -43,7 +42,7 @@ input, select, button {
     border: 1px solid #ddd;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 10px; /* Add a gap below each input and select */
+    margin-bottom: 20px; /* Add a gap below each input and select */
     transition: transform 0.2s ease; /* Prevent zooming when focused */
 }
 
