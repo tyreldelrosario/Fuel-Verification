@@ -41,6 +41,16 @@ function calculateFuel() {
     <p class="limit" style="color: ${resultClass === 'good' ? '#155724' : '#721c24'};">Limit: +/-${mismatchLimit.toFixed(2)} lbs</p>`;
 }
 
+// Prevent non-numeric input for number fields
+document.querySelectorAll('input[type="number"]').forEach(input => {
+    input.addEventListener('keydown', function(event) {
+        const invalidKeys = ['e', 'E', '+', '-', '.'];
+        if (invalidKeys.includes(event.key)) {
+            event.preventDefault();
+        }
+    });
+});
+
 // Function to handle "Enter" key press
 document.getElementById('fuelForm').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
