@@ -1,15 +1,44 @@
 // Function to calculate the fuel mismatch
 function calculateFuel() {
-    const fuelChange = parseFloat(document.getElementById('fuelChange').value);
-    const fuelUnit = document.getElementById('fuelUnit').value;
-    const originalFuel = parseFloat(document.getElementById('originalFuel').value);
-    const currentFuel = parseFloat(document.getElementById('currentFuel').value);
+    const fuelChangeField = document.getElementById('fuelChange');
+    const fuelUnit = document.getElementById('fuelUnit');
+    const originalFuelField = document.getElementById('originalFuel');
+    const currentFuelField = document.getElementById('currentFuel');
+
+    // Get values from input fields
+    const fuelChange = parseFloat(fuelChangeField.value);
+    const originalFuel = parseFloat(originalFuelField.value);
+    const currentFuel = parseFloat(currentFuelField.value);
+
+    // Reset previous error styling
+    resetErrorStyles();
+
+    // Check if any of the fields are empty or contain non-numeric input
+    let isError = false;
+    if (isNaN(fuelChange) || fuelChangeField.value === '') {
+        setErrorStyle(fuelChangeField);
+        isError = true;
+    }
+    if (isNaN(originalFuel) || originalFuelField.value === '') {
+        setErrorStyle(originalFuelField);
+        isError = true;
+    }
+    if (isNaN(currentFuel) || currentFuelField.value === '') {
+        setErrorStyle(currentFuelField);
+        isError = true;
+    }
+
+    // If there's an error, display an error message and stop calculation
+    if (isError) {
+        displayError("Please fill in all fields with valid numbers.");
+        return;
+    }
 
     // Convert fuel change to pounds
     let fuelChangePounds = 0;
-    if (fuelUnit === "litres") {
+    if (fuelUnit.value === "litres") {
         fuelChangePounds = fuelChange * 1.76;
-    } else if (fuelUnit === "gallons") {
+    } else if (fuelUnit.value === "gallons") {
         fuelChangePounds = fuelChange * 6.67;
     }
 
@@ -39,6 +68,27 @@ function calculateFuel() {
     // Add "+/-" in front of the limit and set the result text colour to PASS or FAIL
     result.innerHTML = `<p class="${resultClass}"><span class="icon">${tickIcon}</span>${resultText}</p>
     <p class="limit" style="color: ${resultClass === 'good' ? '#155724' : '#721c24'};">Limit: +/-${mismatchLimit.toFixed(2)} lbs</p>`;
+}
+
+// Function to display error messages
+function displayError(message) {
+    const result = document.getElementById('result');
+    result.innerHTML = `<p class="error">${message}</p>`;
+}
+
+// Function to set error styling on an input field
+function setErrorStyle(inputElement) {
+    inputElement.style.borderColor = 'red';
+    inputElement.style.backgroundColor = '#f8d7da'; // Light red background for error
+}
+
+// Function to reset error styling on input fields
+function resetErrorStyles() {
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.style.borderColor = '';
+        input.style.backgroundColor = '';
+    });
 }
 
 // Prevent non-numeric input for number fields
@@ -82,4 +132,4 @@ document.getElementById('fuelForm').addEventListener('keydown', function(event) 
             }
         }
     }
-});
+})
