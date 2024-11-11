@@ -34,3 +34,24 @@ function calculateFuel() {
         result.firstElementChild.innerHTML = `Fuel mismatch is <strong>BAD</strong>: ${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)`;
     }
 }
+
+// Function to handle "Enter" key press and skip the unit selection
+document.getElementById('fuelForm').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent form submission
+
+        // Find the currently focused input element
+        const activeElement = document.activeElement;
+        
+        // Define the form elements and exclude the 'fuelUnit' select element from focus
+        const formElements = Array.from(document.querySelectorAll('input, select, button'))
+            .filter(element => element.id !== 'fuelUnit');
+        
+        const currentIndex = formElements.indexOf(activeElement);
+        
+        // Move to the next element if it's not the last element in the form
+        if (currentIndex !== -1 && currentIndex < formElements.length - 1) {
+            formElements[currentIndex + 1].focus();
+        }
+    }
+});
