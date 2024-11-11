@@ -5,10 +5,10 @@ function calculateFuel() {
     const originalFuelField = document.getElementById('originalFuel');
     const currentFuelField = document.getElementById('currentFuel');
 
-    // Get values from input fields
-    const fuelChange = parseFloat(fuelChangeField.value);
-    const originalFuel = parseFloat(originalFuelField.value);
-    const currentFuel = parseFloat(currentFuelField.value);
+    // Get values from input fields and remove commas
+    const fuelChange = parseFloat(fuelChangeField.value.replace(/,/g, ''));
+    const originalFuel = parseFloat(originalFuelField.value.replace(/,/g, ''));
+    const currentFuel = parseFloat(currentFuelField.value.replace(/,/g, ''));
 
     // Reset previous error styling
     resetErrorStyles();
@@ -132,4 +132,4 @@ document.getElementById('fuelForm').addEventListener('keydown', function(event) 
             }
         }
     }
-})
+});
