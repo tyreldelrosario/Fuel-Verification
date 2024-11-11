@@ -1,8 +1,8 @@
 /* General Body Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #eef2f5;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fc; /* Lighter background for a calm effect */
+    color: #4f4f4f; /* Soft dark grey for text */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,21 +13,22 @@ body {
 /* Container for the Form */
 .container {
     background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 35px;
     width: 100%;
-    max-width: 550px;
+    max-width: 600px;
     box-sizing: border-box;
+    border: 1px solid #e1e4e8; /* Light border for structure */
 }
 
 /* Heading Styling */
 h1 {
     font-size: 2rem;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: #007bff;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 /* Form Group Styling */
@@ -37,28 +38,33 @@ h1 {
 
 label {
     display: block;
-    margin-bottom: 5px; /* Reduced space between label and input */
-    font-weight: bold;
+    margin-bottom: 4px; /* Smaller space between label and input */
+    font-weight: 500;
     color: #333;
 }
 
 /* Input Fields & Select Styling */
 input, select, button {
-    font-size: 1rem;
+    font-size: 1.1rem;
     padding: 12px;
-    border-radius: 6px;
+    border-radius: 8px;
     width: 100%;
     border: 1px solid #ddd;
-    margin-top: 5px;
+    margin-top: 6px; /* Reduced margin between input and field */
     box-sizing: border-box;
     transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Smaller font size inside input fields */
+input, select {
+    font-size: 0.95rem; /* Smaller font size inside input fields */
 }
 
 /* Focus and Hover Styling */
 input:focus, select:focus, button:focus {
     outline: none;
     border-color: #007bff;
-    background-color: #e9f3ff;
+    background-color: #f1f9ff;
 }
 
 /* Button Styling */
@@ -67,6 +73,9 @@ button {
     color: white;
     cursor: pointer;
     border: none;
+    padding: 14px;
+    font-size: 1.1rem;
+    margin-top: 20px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -82,17 +91,16 @@ button:active {
 /* Input Group for Fuel Change & Unit Selection */
 .input-group {
     display: flex;
-    gap: 10px;
+    gap: 15px; /* Space between input and select */
     align-items: center;
-    width: 100%;
 }
 
 .input-group input {
-    width: 75%; /* 75% width for input */
+    width: 75%; /* 75% for the input */
 }
 
 .input-group select {
-    width: 25%; /* 25% width for select */
+    width: 25%; /* 25% for the select */
 }
 
 /* Result Section */
@@ -102,11 +110,14 @@ button:active {
 }
 
 .good, .bad, .error {
-    padding: 18px;
-    border-radius: 8px;
-    font-size: 1rem;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 15px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .good {
@@ -128,7 +139,7 @@ button:active {
 }
 
 .limit {
-    font-size: 0.9em;
+    font-size: 1rem;
     color: #555;
     margin-top: 10px;
 }
@@ -151,27 +162,22 @@ button:active {
     }
 
     h1 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 
     label {
-        font-size: 1em;
-    }
-
-    input, select, button {
         font-size: 1.1rem;
     }
 
-    /* Ensure the input-group stays horizontal even on small screens */
-    .input-group {
-        flex-wrap: nowrap; /* Prevent wrapping */
+    input, select, button {
+        font-size: 1.2rem;
     }
 
     .input-group input {
-        width: 70%; /* Keep the input 70% of the width */
+        width: 70%;
     }
 
     .input-group select {
-        width: 25%; /* Keep the select 25% of the width */
+        width: 30%;
     }
 }
