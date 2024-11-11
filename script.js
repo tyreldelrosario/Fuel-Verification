@@ -30,7 +30,7 @@ function calculateFuel() {
 
     // If there's an error, display an error message and stop calculation
     if (isError) {
-        displayError("Please fill in all fields with valid numbers.");
+        displayError("Please fill in all fields with valid numbers");
         return;
     }
 
