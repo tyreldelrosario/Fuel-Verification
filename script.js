@@ -62,22 +62,24 @@ document.querySelectorAll('input[type="number"], select').forEach(input => {
     input.addEventListener('input', () => input.value = input.value.replace(/,/g, ''));
 });
 
+// Add event listener for Enter key on the form to handle both navigation and submit
 document.getElementById('fuelForm').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
-        const activeElement = document.activeElement;
         const formElements = Array.from(document.querySelectorAll('input, select, button'));
-        let currentIndex = formElements.indexOf(activeElement);
+        const activeElement = document.activeElement;
+        const activeIndex = formElements.indexOf(activeElement);
 
-        if (currentIndex !== -1) {
-            let nextIndex = currentIndex + 1;
-            if (formElements[nextIndex] === document.getElementById('fuelUnit')) nextIndex++;
-
-            // If the current element is the last form element, trigger the button click
-            if (nextIndex >= formElements.length) {
-                document.querySelector('button').click();  // Trigger button click immediately
-            } else {
-                formElements[nextIndex].focus(); // Otherwise, focus the next element
+        // Check if the active element is the last input/select field (not the unit selection)
+        if (activeIndex === formElements.length - 2) {
+            // If it is the last element, trigger the button click
+            document.querySelector('button').click();
+        } else {
+            // Otherwise, move to the next element, skipping the unit selection
+            let nextIndex = activeIndex + 1;
+            if (formElements[nextIndex] === document.getElementById('fuelUnit')) nextIndex++; // Skip unit selection
+            if (nextIndex < formElements.length) {
+                formElements[nextIndex].focus(); // Focus the next element
             }
         }
     }
