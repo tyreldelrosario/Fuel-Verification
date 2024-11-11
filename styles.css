@@ -1,70 +1,74 @@
 /* General Body Styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7fc; /* Light background for a calm feel */
+    background-color: #f4f7fc; /* Lighter background for a calm effect */
     color: #4f4f4f; /* Soft dark grey for text */
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     margin: 0;
-    padding: 0 15px; /* Padding for small screens */
 }
 
 /* Container for the Form */
 .container {
     background-color: #ffffff;
-    border-radius: 16px; /* More rounded corners */
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 40px;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 35px;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     box-sizing: border-box;
-    border: 1px solid #e1e4e8;
+    border: 1px solid #e1e4e8; /* Light border for structure */
 }
 
 /* Heading Styling */
 h1 {
-    font-size: 2.4rem; /* Slightly larger heading */
+    font-size: 2rem;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     color: #007bff;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /* Form Group Styling */
 .form-group {
-    margin-bottom: 25px; /* Increased space between sections */
+    margin-bottom: 20px; /* Increased gap between sections */
     padding: 20px;
+    border: 1px solid #ddd; /* Border around each section */
     border-radius: 8px;
-    background-color: #f9f9f9; /* Light grey background */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for separation */
+    background-color: #f9f9f9; /* Light grey background for each section */
 }
 
 label {
     display: block;
-    margin-bottom: 6px; /* Small gap between label and input */
-    font-weight: 600;
+    margin-bottom: 4px; /* Smaller space between label and input */
+    font-weight: 500;
     color: #333;
 }
 
 /* Input Fields & Select Styling */
 input, select, button {
-    font-size: 1.2rem; /* Larger font size for clarity */
-    padding: 12px 16px;
-    border-radius: 10px; /* Rounder inputs */
+    font-size: 1.1rem;
+    padding: 12px;
+    border-radius: 8px;
     width: 100%;
-    border: 1px solid #ccc;
-    margin-top: 8px;
+    border: 1px solid #ddd;
+    margin-top: 6px; /* Reduced margin between input and field */
     box-sizing: border-box;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-/* Focus Styling */
+/* Smaller font size inside input fields */
+input, select {
+    font-size: 0.95rem; /* Smaller font size inside input fields */
+}
+
+/* Focus and Hover Styling */
 input:focus, select:focus, button:focus {
     outline: none;
     border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3); /* Soft blue glow on focus */
+    background-color: #f1f9ff;
 }
 
 /* Button Styling */
@@ -73,17 +77,15 @@ button {
     color: white;
     cursor: pointer;
     border: none;
-    padding: 16px;
-    font-size: 1.2rem;
-    margin-top: 25px;
+    padding: 14px;
+    font-size: 1.1rem;
+    margin-top: 20px;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Button shadow */
 }
 
 button:hover {
     background-color: #0056b3;
-    transform: scale(1.05); /* Slight scaling on hover */
+    transform: scale(1.05);
 }
 
 button:active {
@@ -93,32 +95,31 @@ button:active {
 /* Input Group for Fuel Change & Unit Selection */
 .input-group {
     display: flex;
-    gap: 20px; /* More space between input and select */
+    gap: 15px; /* Space between input and select */
     align-items: center;
-    flex-wrap: wrap;
 }
 
 .input-group input {
-    width: 70%; /* Input takes more space */
+    width: 75%; /* 75% for the input */
 }
 
 .input-group select {
-    width: 28%; /* Select takes up less space */
+    width: 25%; /* 25% for the select */
 }
 
 /* Result Section */
 #result {
-    margin-top: 40px;
+    margin-top: 30px;
     text-align: center;
 }
 
 .good, .bad, .error {
-    padding: 18px;
-    border-radius: 12px;
-    font-size: 1.2rem;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
     font-weight: bold;
-    margin-top: 20px;
-    max-width: 450px;
+    margin-top: 15px;
+    max-width: 400px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -142,7 +143,7 @@ button:active {
 }
 
 .limit {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #555;
     margin-top: 10px;
 }
@@ -155,13 +156,17 @@ button:active {
 
 /* Responsive Design for Small Screens */
 @media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
     .container {
         padding: 25px;
         max-width: 100%;
     }
 
     h1 {
-        font-size: 2rem; /* Reduced font size for smaller screens */
+        font-size: 1.8rem;
     }
 
     label {
@@ -169,21 +174,14 @@ button:active {
     }
 
     input, select, button {
-        font-size: 1.1rem; /* Slightly smaller font for better fitting */
-        padding: 14px; /* Increased padding for mobile */
+        font-size: 1.2rem;
     }
 
-    /* Adjust input and select layout */
     .input-group input {
-        width: 65%; /* Input takes more width */
+        width: 70%;
     }
 
     .input-group select {
-        width: 30%; /* Select takes a bit less space */
-    }
-
-    button {
-        font-size: 1.3rem;
-        padding: 18px; /* Larger button for mobile devices */
+        width: 30%;
     }
 }
