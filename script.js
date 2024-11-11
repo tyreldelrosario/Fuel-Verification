@@ -45,8 +45,3 @@ document.getElementById('fuelForm').addEventListener('keydown', function(event) 
         }
     }
 });
-
-// Prevent scrolling on the page
-document.body.addEventListener('touchmove', function(event) {
-    event.preventDefault(); // Prevent scrolling on touch devices
-}, { passive: false });
