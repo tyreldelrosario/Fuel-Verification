@@ -21,37 +21,27 @@ function calculateFuel() {
 
     // Display the result
     const result = document.getElementById('result');
-    result.innerHTML = `<p>${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)</p>`;
-    
-    // Apply color class based on result
     if (Math.abs(fuelMismatch) <= mismatchLimit) {
-        result.firstElementChild.classList.add("good-result");
-        result.firstElementChild.classList.remove("bad-result");
-        result.firstElementChild.innerHTML = `Fuel mismatch is <strong>GOOD</strong>: ${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)`;
+        result.innerHTML = <p>Fuel mismatch is <strong>GOOD</strong>: ${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)</p>;
     } else {
-        result.firstElementChild.classList.add("bad-result");
-        result.firstElementChild.classList.remove("good-result");
-        result.firstElementChild.innerHTML = `Fuel mismatch is <strong>BAD</strong>: ${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)`;
+        result.innerHTML = <p>Fuel mismatch is <strong>BAD</strong>: ${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)</p>;
     }
 }
 
-// Function to handle "Enter" key press and skip the unit selection
+// Function to handle "Enter" key press
 document.getElementById('fuelForm').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault(); // Prevent form submission
-
+        let focusNext = false;
+        
         // Find the currently focused input element
         const activeElement = document.activeElement;
-        
-        // Define the form elements and exclude the 'fuelUnit' select element from focus
-        const formElements = Array.from(document.querySelectorAll('input, select, button'))
-            .filter(element => element.id !== 'fuelUnit');
-        
+
+        // Move to the next element in the form
+        const formElements = Array.from(document.querySelectorAll('input, select, button'));
         const currentIndex = formElements.indexOf(activeElement);
-        
-        // Move to the next element if it's not the last element in the form
         if (currentIndex !== -1 && currentIndex < formElements.length - 1) {
-            formElements[currentIndex + 1].focus();
+            formElements[currentIndex + 1].focus(); // Focus next element
         }
     }
 });
