@@ -1,135 +1,175 @@
-// Function to calculate the fuel mismatch
-function calculateFuel() {
-    const fuelChangeField = document.getElementById('fuelChange');
-    const fuelUnit = document.getElementById('fuelUnit');
-    const originalFuelField = document.getElementById('originalFuel');
-    const currentFuelField = document.getElementById('currentFuel');
-
-    // Get values from input fields
-    const fuelChange = parseFloat(fuelChangeField.value);
-    const originalFuel = parseFloat(originalFuelField.value);
-    const currentFuel = parseFloat(currentFuelField.value);
-
-    // Reset previous error styling
-    resetErrorStyles();
-
-    // Check if any of the fields are empty or contain non-numeric input
-    let isError = false;
-    if (isNaN(fuelChange) || fuelChangeField.value === '') {
-        setErrorStyle(fuelChangeField);
-        isError = true;
-    }
-    if (isNaN(originalFuel) || originalFuelField.value === '') {
-        setErrorStyle(originalFuelField);
-        isError = true;
-    }
-    if (isNaN(currentFuel) || currentFuelField.value === '') {
-        setErrorStyle(currentFuelField);
-        isError = true;
-    }
-
-    // If there's an error, display an error message and stop calculation
-    if (isError) {
-        displayError("Please fill in all fields with valid numbers.");
-        return;
-    }
-
-    // Convert fuel change to pounds
-    let fuelChangePounds = 0;
-    if (fuelUnit.value === "litres") {
-        fuelChangePounds = fuelChange * 1.76;
-    } else if (fuelUnit.value === "gallons") {
-        fuelChangePounds = fuelChange * 6.67;
-    }
-
-    // Calculate mismatch limit
-    const mismatchLimit = (fuelChangePounds * 0.01) + 2400;
-
-    // Calculate the fuel mismatch
-    const fuelMismatch = (originalFuel + fuelChangePounds) - currentFuel;
-
-    // Display the result
-    const result = document.getElementById('result');
-    let resultText = '';
-    let resultClass = '';
-    let tickIcon = '';
-
-    // Determine if the result is pass or fail
-    if (Math.abs(fuelMismatch) <= mismatchLimit) {
-        resultText = `PASS: ${fuelMismatch.toFixed(2)} lbs`;
-        resultClass = 'good'; // Pass -> green
-        tickIcon = '✔️'; // Checkmark for "PASS"
-    } else {
-        resultText = `FAIL: ${fuelMismatch.toFixed(2)} lbs`;
-        resultClass = 'bad'; // Fail -> red
-        tickIcon = '❌'; // Cross for "FAIL"
-    }
-
-    // Add "+/-" in front of the limit and set the result text colour to PASS or FAIL
-    result.innerHTML = `<p class="${resultClass}"><span class="icon">${tickIcon}</span>${resultText}</p>
-    <p class="limit" style="color: ${resultClass === 'good' ? '#155724' : '#721c24'};">Limit: +/-${mismatchLimit.toFixed(2)} lbs</p>`;
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto; /* Allow vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
 }
 
-// Function to display error messages
-function displayError(message) {
-    const result = document.getElementById('result');
-    result.innerHTML = `<p class="error">${message}</p>`;
+h1 {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-// Function to set error styling on an input field
-function setErrorStyle(inputElement) {
-    inputElement.style.borderColor = 'red';
-    inputElement.style.backgroundColor = '#f8d7da'; // Light red background for error
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-// Function to reset error styling on input fields
-function resetErrorStyles() {
-    const inputs = document.querySelectorAll('input, select');
-    inputs.forEach(input => {
-        input.style.borderColor = '';
-        input.style.backgroundColor = '';
-    });
+label {
+    font-size: 1em;
+    margin-bottom: 5px;
 }
 
-// Prevent non-numeric input for number fields
-document.querySelectorAll('input[type="number"]').forEach(input => {
-    input.addEventListener('keydown', function(event) {
-        const invalidKeys = ['e', 'E', '+', '-', '.'];
-        if (invalidKeys.includes(event.key)) {
-            event.preventDefault();
-        }
-    });
-});
+input, select, button {
+    font-size: 1em;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+}
 
-// Function to handle "Enter" key press
-document.getElementById('fuelForm').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent form submission
-        let focusNext = false;
+input:focus, select:focus, button:focus {
+    outline: none;
+    transform: scale(1);
+}
 
-        // Find the currently focused input element
-        const activeElement = document.activeElement;
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-        // Move to the next element in the form
-        const formElements = Array.from(document.querySelectorAll('input, select, button'));
-        const currentIndex = formElements.indexOf(activeElement);
+button:hover {
+    background-color: #0056b3;
+}
 
-        if (currentIndex !== -1) {
-            // Skip fuelUnit select if it's the current element
-            let nextIndex = currentIndex + 1;
-            if (formElements[nextIndex] === document.getElementById('fuelUnit')) {
-                nextIndex++; // Skip the select if it's the next element
-            }
+#result {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 400px;
+}
 
-            if (nextIndex < formElements.length) {
-                // Focus the next element
-                formElements[nextIndex].focus();
-            }
+#result p {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, border-color 0.3s;
+}
 
-            // If it's the last input, click the calculate button
-            if (nextIndex === formElements.length - 1) {
-                document.querySelector('button').click(); // Trigger the button's click event
-            }
-        }
+/* Styling for "good" result (PASS) */
+.good {
+    color: #155724; /* Dark green */
+    background-color: #d4edda; /* Light green */
+    border-color: #c3e6cb;
+}
+
+/* Styling for "bad" result (FAIL) */
+.bad {
+    color: #721c24; /* Dark red */
+    background-color: #f8d7da; /* Light red */
+    border-color: #f5c6cb;
+}
+
+.good .icon,
+.bad .icon {
+    font-size: 2em;
+    margin-right: 10px;
+}
+
+/* Limit Styling */
+#result .limit {
+    font-size: 0.9em; /* Smaller size for the limit */
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+/* New layout for fuel change and unit selection */
+.fuel-change-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.fuel-change-container input,
+.fuel-change-container select {
+    width: auto;
+}
+
+/* No initial red styling on invalid fields */
+input:focus, select:focus {
+    border-color: #007bff; /* Blue border on focus */
+    background-color: #ffffff;
+}
+
+/* Styling for error message */
+.error {
+    color: #721c24; /* Dark red */
+    background-color: #f8d7da; /* Light red */
+    border-color: #f5c6cb;
+    font-size: 1.1em;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+
+
+/* iPhone and small screen optimizations */
+@media (max-width: 600px) {
+    body {
+        padding: 20px;
+        background-color: #e9ecef;
     }
-})
+
+    h1 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    form {
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: none;
+    }
+
+    label {
+        font-size: 0.95em;
+    }
+
+    input, select, button {
+        font-size: 1.1em;
+        padding: 10px;
+    }
+
+    #result p {
+        font-size: 1em;
+    }
+}
