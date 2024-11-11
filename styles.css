@@ -33,7 +33,11 @@ h1 {
 
 /* Form Group Styling */
 .form-group {
-    margin-bottom: 15px; /* Reduced gap between sections */
+    margin-bottom: 20px; /* Increased gap between sections */
+    padding: 20px;
+    border: 1px solid #ddd; /* Border around each section */
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Light grey background for each section */
 }
 
 label {
