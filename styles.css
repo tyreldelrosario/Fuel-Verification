@@ -9,8 +9,8 @@ body {
     background-color: #f4f4f4;
     height: 100vh;
     box-sizing: border-box;
-    overflow: hidden;
-    -webkit-overflow-scrolling: touch;
+    overflow-y: auto; /* Allow vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
 }
 
 h1 {
@@ -148,5 +148,8 @@ button:hover {
         font-size: 1.1em;
         padding: 10px;
     }
-}
 
+    #result p {
+        font-size: 1em;
+    }
+}
