@@ -56,11 +56,9 @@ function resetErrorStyles() {
     document.querySelectorAll('.input-error').forEach(input => input.classList.remove('input-error'));
 }
 
-document.querySelectorAll('input[type="number"]').forEach(input => {
-    input.addEventListener('keydown', function(event) {
-        if (['e', 'E', '+', '-', '.'].includes(event.key)) event.preventDefault();
-    });
-
+// Remove error highlight when input is focused
+document.querySelectorAll('input[type="number"], select').forEach(input => {
+    input.addEventListener('focus', () => input.classList.remove('input-error'));
     input.addEventListener('input', () => input.value = input.value.replace(/,/g, ''));
 });
 
@@ -75,8 +73,12 @@ document.getElementById('fuelForm').addEventListener('keydown', function(event) 
             let nextIndex = currentIndex + 1;
             if (formElements[nextIndex] === document.getElementById('fuelUnit')) nextIndex++;
 
-            if (nextIndex < formElements.length) formElements[nextIndex].focus();
-            else document.querySelector('button').click();
+            // If the current element is the last form element, trigger the button click
+            if (nextIndex >= formElements.length) {
+                document.querySelector('button').click();  // Trigger button click immediately
+            } else {
+                formElements[nextIndex].focus(); // Otherwise, focus the next element
+            }
         }
     }
 });
