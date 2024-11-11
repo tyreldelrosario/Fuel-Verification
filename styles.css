@@ -9,8 +9,8 @@ body {
     background-color: #f4f4f4;
     height: 100vh;
     box-sizing: border-box;
-    overflow: hidden; /* Prevent page scrolling */
-    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 h1 {
@@ -23,7 +23,7 @@ form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 400px; /* Max width for larger screens */
+    max-width: 400px;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -32,7 +32,7 @@ form {
 
 label {
     font-size: 1em;
-    margin-bottom: 5px; /* No gap below labels */
+    margin-bottom: 5px;
 }
 
 input, select, button {
@@ -42,13 +42,13 @@ input, select, button {
     border: 1px solid #ddd;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 20px; /* Add a gap below each input and select */
-    transition: transform 0.2s ease; /* Prevent zooming when focused */
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
 }
 
 input:focus, select:focus, button:focus {
     outline: none;
-    transform: scale(1); /* Prevent zooming on input focus */
+    transform: scale(1);
 }
 
 button {
@@ -63,12 +63,50 @@ button:hover {
     background-color: #0056b3;
 }
 
+#result {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 400px;
+}
+
 #result p {
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
-    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Styling for "good" result (PASS) */
+.good {
+    color: #155724; /* Dark green */
+    background-color: #d4edda; /* Light green */
+    border-color: #c3e6cb;
+}
+
+/* Styling for "bad" result (FAIL) */
+.bad {
+    color: #721c24; /* Dark red */
+    background-color: #f8d7da; /* Light red */
+    border-color: #f5c6cb;
+}
+
+.good .icon,
+.bad .icon {
+    font-size: 2em;
+    margin-right: 10px;
+}
+
+/* Limit Styling */
+#result .limit {
+    font-size: 0.9em; /* Smaller size for the limit */
+    font-weight: normal;
+    margin-top: 10px;
 }
 
 /* New layout for fuel change and unit selection */
@@ -79,13 +117,9 @@ button:hover {
     width: 100%;
 }
 
-.fuel-change-container label {
-    margin-bottom: 0; /* Remove bottom margin for label */
-}
-
 .fuel-change-container input,
 .fuel-change-container select {
-    width: auto; /* Allow input and select to adjust width based on content */
+    width: auto;
 }
 
 /* iPhone and small screen optimizations */
@@ -114,8 +148,5 @@ button:hover {
         font-size: 1.1em;
         padding: 10px;
     }
-
-    #result p {
-        font-size: 1em;
-    }
 }
+
