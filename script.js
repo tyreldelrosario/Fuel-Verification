@@ -21,11 +21,24 @@ function calculateFuel() {
 
     // Display the result
     const result = document.getElementById('result');
+    let resultText = '';
+    let resultClass = '';
+    let tickIcon = '';
+
+    // Determine if the result is pass or fail
     if (Math.abs(fuelMismatch) <= mismatchLimit) {
-        result.innerHTML = `<p>Fuel mismatch is <strong>GOOD</strong>: ${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)</p>`;
+        resultText = `PASS: ${fuelMismatch.toFixed(2)} lbs`;
+        resultClass = 'good'; // Pass -> green
+        tickIcon = '✔️'; // Checkmark for "PASS"
     } else {
-        result.innerHTML = `<p>Fuel mismatch is <strong>BAD</strong>: ${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)</p>`;
+        resultText = `FAIL: ${fuelMismatch.toFixed(2)} lbs`;
+        resultClass = 'bad'; // Fail -> red
+        tickIcon = '❌'; // Cross for "FAIL"
     }
+
+    // Add "+/-" in front of the limit and set the result text colour to PASS or FAIL
+    result.innerHTML = `<p class="${resultClass}"><span class="icon">${tickIcon}</span>${resultText}</p>
+    <p class="limit" style="color: ${resultClass === 'good' ? '#155724' : '#721c24'};">Limit: +/-${mismatchLimit.toFixed(2)} lbs</p>`;
 }
 
 // Function to handle "Enter" key press
@@ -33,15 +46,30 @@ document.getElementById('fuelForm').addEventListener('keydown', function(event) 
     if (event.key === 'Enter') {
         event.preventDefault(); // Prevent form submission
         let focusNext = false;
-        
+
         // Find the currently focused input element
         const activeElement = document.activeElement;
 
         // Move to the next element in the form
         const formElements = Array.from(document.querySelectorAll('input, select, button'));
         const currentIndex = formElements.indexOf(activeElement);
-        if (currentIndex !== -1 && currentIndex < formElements.length - 1) {
-            formElements[currentIndex + 1].focus(); // Focus next element
+
+        if (currentIndex !== -1) {
+            // Skip fuelUnit select if it's the current element
+            let nextIndex = currentIndex + 1;
+            if (formElements[nextIndex] === document.getElementById('fuelUnit')) {
+                nextIndex++; // Skip the select if it's the next element
+            }
+
+            if (nextIndex < formElements.length) {
+                // Focus the next element
+                formElements[nextIndex].focus();
+            }
+
+            // If it's the last input, click the calculate button
+            if (nextIndex === formElements.length - 1) {
+                document.querySelector('button').click(); // Trigger the button's click event
+            }
         }
     }
 });
