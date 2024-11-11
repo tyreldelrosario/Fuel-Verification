@@ -9,8 +9,8 @@ body {
     background-color: #f4f4f4;
     height: 100vh;
     box-sizing: border-box;
-    overflow: hidden; /* Prevent page scrolling */
-    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 h1 {
@@ -23,7 +23,7 @@ form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 400px; /* Max width for larger screens */
+    max-width: 400px;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -32,7 +32,7 @@ form {
 
 label {
     font-size: 1em;
-    margin-bottom: 5px; /* No gap below labels */
+    margin-bottom: 5px;
 }
 
 input, select, button {
@@ -42,13 +42,13 @@ input, select, button {
     border: 1px solid #ddd;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 20px; /* Add a gap below each input and select */
-    transition: transform 0.2s ease; /* Prevent zooming when focused */
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
 }
 
 input:focus, select:focus, button:focus {
     outline: none;
-    transform: scale(1); /* Prevent zooming on input focus */
+    transform: scale(1);
 }
 
 button {
@@ -56,11 +56,13 @@ button {
     color: white;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-height: 45px; /* Ensures button size is consistent */
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.02); /* Slight scale effect on hover */
 }
 
 #result p {
@@ -69,6 +71,14 @@ button:hover {
     text-align: center;
     margin-top: 20px;
     color: #333;
+}
+
+.good-result {
+    color: green;
+}
+
+.bad-result {
+    color: red;
 }
 
 /* New layout for fuel change and unit selection */
@@ -80,12 +90,13 @@ button:hover {
 }
 
 .fuel-change-container label {
-    margin-bottom: 0; /* Remove bottom margin for label */
+    margin-bottom: 0;
 }
 
 .fuel-change-container input,
 .fuel-change-container select {
-    width: auto; /* Allow input and select to adjust width based on content */
+    width: auto;
+    -webkit-appearance: none; /* Prevent zoom on iOS */
 }
 
 /* iPhone and small screen optimizations */
@@ -113,6 +124,10 @@ button:hover {
     input, select, button {
         font-size: 1.1em;
         padding: 10px;
+    }
+
+    button {
+        min-height: 50px; /* Larger tap target on mobile */
     }
 
     #result p {
