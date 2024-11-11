@@ -99,6 +99,11 @@ document.querySelectorAll('input[type="number"]').forEach(input => {
             event.preventDefault();
         }
     });
+
+    // Remove commas after input changes
+    input.addEventListener('input', function(event) {
+        input.value = input.value.replace(/,/g, '');
+    });
 });
 
 // Function to handle "Enter" key press
