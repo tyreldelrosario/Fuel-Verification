@@ -122,6 +122,26 @@ button:hover {
     width: auto;
 }
 
+/* No initial red styling on invalid fields */
+input:focus, select:focus {
+    border-color: #007bff; /* Blue border on focus */
+    background-color: #ffffff;
+}
+
+/* Styling for error message */
+.error {
+    color: #721c24; /* Dark red */
+    background-color: #f8d7da; /* Light red */
+    border-color: #f5c6cb;
+    font-size: 1.1em;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+
+
 /* iPhone and small screen optimizations */
 @media (max-width: 600px) {
     body {
