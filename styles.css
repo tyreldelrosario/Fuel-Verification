@@ -14,7 +14,7 @@ body {
 }
 
 h1 {
-    font-size: 1.5em;
+    font-size: 2em;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -150,8 +150,9 @@ input:focus, select:focus {
     }
 
     h1 {
-        font-size: 1.3em;
-        margin-bottom: 15px;
+        font-family: 'Roboto', sans-serif;     /* Simple, clean font */
+        font-size: 2rem;                   /* Size the heading appropriately */
+        color: #333;                         /* Neutral, dark grey color */
     }
 
     form {
