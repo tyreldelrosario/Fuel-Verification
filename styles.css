@@ -1,176 +1,177 @@
-/* General Styles */
+/* General Body Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #eef2f5;
+    color: #333;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin: 0;
-    padding: 10px;
-    background-color: #f4f4f4;
+    justify-content: center;
     height: 100vh;
-    box-sizing: border-box;
-    overflow-y: auto; /* Allow vertical scrolling */
-    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+    margin: 0;
 }
 
+/* Container for the Form */
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 550px;
+    box-sizing: border-box;
+}
+
+/* Heading Styling */
 h1 {
-    font-size: 2em;
+    font-size: 2rem;
     text-align: center;
     margin-bottom: 20px;
+    color: #007bff;
+    font-weight: bold;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 15px; /* Reduced gap between sections */
 }
 
 label {
-    font-size: 1em;
-    margin-bottom: 5px;
+    display: block;
+    margin-bottom: 5px; /* Reduced space between label and input */
+    font-weight: bold;
+    color: #333;
 }
 
+/* Input Fields & Select Styling */
 input, select, button {
-    font-size: 1em;
+    font-size: 1rem;
     padding: 12px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    border-radius: 6px;
     width: 100%;
+    border: 1px solid #ddd;
+    margin-top: 5px;
     box-sizing: border-box;
-    margin-bottom: 20px;
-    transition: transform 0.2s ease;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
+/* Focus and Hover Styling */
 input:focus, select:focus, button:focus {
     outline: none;
-    transform: scale(1);
+    border-color: #007bff;
+    background-color: #e9f3ff;
 }
 
+/* Button Styling */
 button {
     background-color: #007bff;
     color: white;
-    border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 
+button:active {
+    transform: scale(0.98);
+}
+
+/* Input Group for Fuel Change & Unit Selection */
+.input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.input-group input {
+    width: 75%; /* 75% width for input */
+}
+
+.input-group select {
+    width: 25%; /* 25% width for select */
+}
+
+/* Result Section */
 #result {
     margin-top: 30px;
-    width: 100%;
-    max-width: 400px;
-}
-
-#result p {
-    font-size: 1.2em;
-    font-weight: bold;
     text-align: center;
-    margin-top: 20px;
-    padding: 20px;
+}
+
+.good, .bad, .error {
+    padding: 18px;
     border-radius: 8px;
-    background-color: #fff;
-    border: 2px solid transparent;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-/* Styling for "good" result (PASS) */
-.good {
-    color: #155724; /* Dark green */
-    background-color: #d4edda; /* Light green */
-    border-color: #c3e6cb;
-}
-
-/* Styling for "bad" result (FAIL) */
-.bad {
-    color: #721c24; /* Dark red */
-    background-color: #f8d7da; /* Light red */
-    border-color: #f5c6cb;
-}
-
-.good .icon,
-.bad .icon {
-    font-size: 2em;
-    margin-right: 10px;
-}
-
-/* Limit Styling */
-#result .limit {
-    font-size: 0.9em; /* Smaller size for the limit */
-    font-weight: normal;
+    font-size: 1rem;
+    font-weight: bold;
     margin-top: 10px;
 }
 
-/* New layout for fuel change and unit selection */
-.fuel-change-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
+.good {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
 }
 
-.fuel-change-container input,
-.fuel-change-container select {
-    width: auto;
+.bad {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
 }
 
-/* No initial red styling on invalid fields */
-input:focus, select:focus {
-    border-color: #007bff; /* Blue border on focus */
-    background-color: #ffffff;
-}
-
-/* Styling for error message */
 .error {
-    color: #721c24; /* Dark red */
-    background-color: #f8d7da; /* Light red */
-    border-color: #f5c6cb;
-    font-size: 1.1em;
-    text-align: center;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
+    color: #721c24;
+    background-color: #fbe9e7;
+    border: 1px solid #f44336;
 }
 
+.limit {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 10px;
+}
 
+/* Error Styling for Input Fields */
+.input-error {
+    border-color: #f44336;
+    background-color: #fbe9e7;
+}
 
-/* iPhone and small screen optimizations */
+/* Responsive Design for Small Screens */
 @media (max-width: 600px) {
     body {
-        padding: 20px;
-        background-color: #e9ecef;
+        padding: 15px;
+    }
+
+    .container {
+        padding: 25px;
+        max-width: 100%;
     }
 
     h1 {
-        font-family: 'Roboto', sans-serif;     /* Simple, clean font */
-        font-size: 2rem;                   /* Size the heading appropriately */
-        color: #333;                         /* Neutral, dark grey color */
-    }
-
-    form {
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: none;
+        font-size: 1.6rem;
     }
 
     label {
-        font-size: 0.95em;
+        font-size: 1em;
     }
 
     input, select, button {
-        font-size: 1.1em;
-        padding: 10px;
+        font-size: 1.1rem;
     }
 
-    #result p {
-        font-size: 1em;
+    /* Ensure the input-group stays horizontal even on small screens */
+    .input-group {
+        flex-wrap: nowrap; /* Prevent wrapping */
+    }
+
+    .input-group input {
+        width: 70%; /* Keep the input 70% of the width */
+    }
+
+    .input-group select {
+        width: 25%; /* Keep the select 25% of the width */
     }
 }
