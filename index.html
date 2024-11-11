@@ -7,32 +7,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Fuel Verification</h1>
+<main>
+    <section class="container">
+        <h1>Fuel Verification</h1>
+        <form id="fuelForm">
+            <div class="form-group">
+                <label for="fuelChange">Uploaded Fuel Change:</label>
+                <div class="input-group">
+                    <input type="number" id="fuelChange" required step="any" placeholder="Enter fuel amount">
+                    <select id="fuelUnit">
+                        <option value="litres">Litres</option>
+                        <option value="gallons">Gallons</option>
+                    </select>
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label for="originalFuel">Original Fuel Total (lbs):</label>
+                <input type="number" id="originalFuel" required step="any" placeholder="Enter original fuel">
+            </div>
 
-<form id="fuelForm">
-    <label for="fuelChange">Uploaded Fuel Change:</label>
-    <div class="fuel-change-container">
-        <input type="number" id="fuelChange" required step="any">
-        <select id="fuelUnit">
-            <option value="litres">Litres</option>
-            <option value="gallons">Gallons</option>
-        </select>
-    </div>
+            <div class="form-group">
+                <label for="currentFuel">Current Aircraft Fuel Load (lbs):</label>
+                <input type="number" id="currentFuel" required step="any" placeholder="Enter current fuel">
+            </div>
 
-    <label for="originalFuel">Original Fuel Total (lbs):</label>
-    <input type="number" id="originalFuel" required step="any">
+            <button type="button" onclick="calculateFuel()">Calculate</button>
+        </form>
 
-    <label for="currentFuel">Current Aircraft Fuel Load (lbs):</label>
-    <input type="number" id="currentFuel" required step="any">
-
-    <button type="button" onclick="calculateFuel()">Calculate</button>
-</form>
-
-<div id="result">
-    <!-- Result will appear here -->
-</div>
-
+        <div id="result">
+            <!-- Result will appear here -->
+        </div>
+    </section>
+</main>
 <script src="script.js"></script>
 </body>
 </html>
