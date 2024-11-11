@@ -22,9 +22,9 @@ function calculateFuel() {
     // Display the result
     const result = document.getElementById('result');
     if (Math.abs(fuelMismatch) <= mismatchLimit) {
-        result.innerHTML = <p>Fuel mismatch is <strong>GOOD</strong>: ${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)</p>;
+        result.innerHTML = `<p>Fuel mismatch is <strong>GOOD</strong>: ${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)</p>`;
     } else {
-        result.innerHTML = <p>Fuel mismatch is <strong>BAD</strong>: ${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)</p>;
+        result.innerHTML = `<p>Fuel mismatch is <strong>BAD</strong>: ${fuelMismatch.toFixed(2)} lbs (Limit: ${mismatchLimit.toFixed(2)} lbs)</p>`;
     }
 }
 
